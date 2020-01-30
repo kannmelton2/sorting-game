@@ -8,11 +8,34 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <!-- MY CSS FILE -->
     <link rel="stylesheet" href="main.css">
-    <title>Document</title>
+    <title>Sorting Game</title>
 </head>
 <body>
-    <button class="btn btn-primary">Button</button>
+    <div class="col-md-10 col-lg-10 mx-auto">
+        <div class="jumbotron">
+            <h1 class="display-4">Sorting Game</h1>
+            <p class="lead">Squashy armchairs dirt on your nose brass scales crush the Sopophorous bean with flat side of silver dagger, releases juice better than cutting. Full moon Whomping Willow three turns should do it lemon drops.</p>
+            <hr class="my-4">
+            <p>Witch Weekly, he will rise again and he will come for us, headmaster Erumpent horn.</p>
+            <a class="btn btn-dark btn-lg" href="#" role="button">Let's Get Sorting</a>
+        </div>
+    </div>
 
-    <script src="sorting"></script>
+    <div class="col-md-10 col-lg-10 mx-auto border border-light bg-light my-3 py-3">
+        <form>
+            <div class="form-group row">
+            <label for="name" class="col-auto col-form-label">Student:</label>
+            <div class="col-auto">
+                 <input type="name" class="form-control" id="studentName" placeholder="Molly Weasley">
+            </div>
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-dark col-sm-1 mb-2">Sort!</button>
+        </div>
+        </form>
+    </div>
+    
+    <div id='studentCards'></div>
+    <script src="sorting.js"></script>
 </body>
 </html>
