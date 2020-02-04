@@ -11,17 +11,20 @@ const printToDom = (containerId, textToPrint) => {
 const buildCards = (arr) => {
     let domStr = '';
     for (let i = 0; i < arr.length; i++) {
-        domStr += '<div class="col-md-4 col-lg-6>"';
-        domStr += '   <div class="card">';
-        domStr += '     <div class="card-body border border-light bg-light mb-3 text-center">';
-        domStr += `         <h5 class="card-title">${arr[i].name}</h5>`;
-        domStr += `         <p class="card-text">${arr[i].house}</p>`;
-        domStr += `         <a href="#" class="btn btn-danger" id="${students[i].id}">Expel</a>`;
-        domStr += '     </div>';
-        domStr += '   </div>';
-        domStr += '</div>';
+        if (arr[i].expelled === false){
+            domStr += '<div class="col-md-4 col-lg-6">';
+            domStr += '   <div class="card">';
+            domStr += `     <div class="card-body border border-light bg-light mb-3 text-center ${arr[i].house}">`;
+            domStr += `         <h5 class="card-title">${arr[i].name}</h5>`;
+            domStr += `         <p class="card-text ">${arr[i].house}</p>`;
+            domStr += `         <button class="btn btn-danger expel" id="${students[i].id}">Expel</button>`;
+            domStr += '     </div>';
+            domStr += '   </div>';
+            domStr += '</div>';
+        }
     }
     printToDom('studentCards', domStr);
+    expelBtnsEvents();
 };
    
 // BUILD FORM FUNCTION
@@ -83,20 +86,35 @@ const sortStudent = (e) => {
    buildCards(students);
 };
 
+// Event Listener in a For Loop for expel students
+const expelBtnsEvents = () => {
+    const expelButtons = document.getElementsByClassName('expel');
+    for (let i = 0; i < expelButtons.length; i++) {
+        expelButtons[i].addEventListener('click', expelStudent);
+    };
+};
+
+
 // EXPEL STUDENTS
 const expelStudent = (e) => {
- // how do you getElementById if you don't know what the id will be?
-}
+    e.preventDefault();
+ const studentId = e.target.id;
+ console.log(studentId);
+ for (let i = 0; i < students.length; i++) {
+     if (students[i].id === studentId) {
+         students[i].expelled = true;
+     }
+ }
+buildCards(students);
+};
 
 // EVENT LISTENERS FUNCTION
 const events = () => {
     document.getElementById('sortBtn').addEventListener('click', sortStudent);
-    document.getElementById('replaceThis').addEventListener('click', expelStudent);
 }
 
 // INIT FUNCTION - RUNS ON OPEN
 const init = () => {
-    buildCards(students);
     buildForm();
     events();
 }
