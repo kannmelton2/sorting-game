@@ -12,12 +12,12 @@ const buildCards = (arr) => {
     let domStr = '';
     for (let i = 0; i < arr.length; i++) {
         if (arr[i].expelled === false){
-            domStr += '<div class="col-md-4 col-lg-6">';
-            domStr += '   <div class="card">';
-            domStr += `     <div class="card-body border border-light bg-light mb-3 text-center ${arr[i].house}">`;
+            domStr += '<div class="col-sm-6 col-md-6 col-lg-4">';
+            domStr += `   <div class="card border border-light bg-light mb-3 text-center ${arr[i].house}">`;
+            domStr += '     <div class="card-body">';
             domStr += `         <h5 class="card-title">${arr[i].name}</h5>`;
             domStr += `         <p class="card-text ">${arr[i].house}</p>`;
-            domStr += `         <button class="btn btn-danger expel" id="${students[i].id}">Expel</button>`;
+            domStr += `         <button class="btn btn-danger expel col-md-6" id="${students[i].id}">EXPEL</button>`;
             domStr += '     </div>';
             domStr += '   </div>';
             domStr += '</div>';
@@ -60,7 +60,7 @@ const createId = () => {
 
 // SUBMIT THE FORM / SORT STUDENT
 const sortStudent = (e) => {
-    e.preventDefault();
+     e.preventDefault();
    let num = Math.floor(Math.random() * 4);
    const student = {
        id: createId(),
