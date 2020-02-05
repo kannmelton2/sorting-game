@@ -29,8 +29,8 @@ const buildCards = (arr) => {
    
 // BUILD FORM FUNCTION
 const buildForm = () => {
-    let domStr = '<div class="col-md-10 col-lg-10 mx-auto border border-light bg-light my-3 py-3 invisible" id="sortingForm">';
-        domStr += ' <form>';
+    let domStr = '<div class="col-md-10 col-lg-10 mx-auto rounded invisible" id="sortingForm">';
+        domStr += ' <form class="mx-auto border border-light bg-light my-3 py-3 px-3 rounded">';
         domStr += '     <div class="form-group row">';
         domStr += '     <label for="name" class="col-auto col-form-label">Student:</label>';
         domStr += '         <div class="col-auto">';
@@ -38,7 +38,7 @@ const buildForm = () => {
         domStr += '         </div>';
         domStr += '     </div>';
         domStr += '     <div class="col-auto">';
-        domStr += '         <button class="btn btn-dark col-sm-1 mb-2" id="sortBtn">Sort!</button>';
+        domStr += '         <button class="btn btn-dark mb-2" id="sortBtn">Sort!</button>';
         domStr += '     </div>';
         domStr += ' </form>';
         domStr += '</div>';
@@ -60,7 +60,6 @@ const createId = () => {
 
 // SUBMIT THE FORM / SORT STUDENT
 const sortStudent = (e) => {
-     e.preventDefault();
    let num = Math.floor(Math.random() * 4);
    const student = {
        id: createId(),
@@ -99,10 +98,10 @@ const expelBtnsEvents = () => {
 const expelStudent = (e) => {
     e.preventDefault();
  const studentId = e.target.id;
- console.log(studentId);
  for (let i = 0; i < students.length; i++) {
      if (students[i].id === studentId) {
          students[i].expelled = true;
+        
      }
  }
 buildCards(students);
@@ -110,7 +109,14 @@ buildCards(students);
 
 // EVENT LISTENERS FUNCTION
 const events = () => {
-    document.getElementById('sortBtn').addEventListener('click', sortStudent);
+    document.addEventListener('click', (e) => {
+        if (e.target.id === 'sortBtn') {
+            sortStudent();
+            buildCards(students);
+            buildForm();
+            revealForm();
+        }
+    });
 }
 
 // INIT FUNCTION - RUNS ON OPEN
